@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">SantanderDevWeek</string>
+    <string name="notificacoes">Notificações</string>
+    <string name="ola_usuario">Olá, User</string>
+    <string name="agencia">Ag 00001</string>
+    <string name="conta_corrente">Cc 00000000–0</string>
+    <string name="saldo_disponivel">Saldo Disponivel</string>
+    <string name="saldo">R$ 1.100,00</string>
+    <string name="saldo_limite">Saldo + Limite: R$ 1.100,00</string>
+    <string name="ver_extrato">Ver Extrato</string>
+    <string name="pagar">Pagar</string>
+    <string name="transferir">Transferir</string>
+    <string name="recarga">Recarga</string>
+    <string name="cartao_final">Cartão Final: 0000</string>
 </resources>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="lucky_point">#FF252A48</color>
-    <color name="flory">#FFE45D68</color>
-    <color name="neon_blue">#FF6640F5</color>
-    <color name="maya_blue">#FF5ABEF9</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="tangaroa">#121528</color>
+    <color name="niagara">#27A486</color>
+    <color name="governor_bay">#5462A3</color>
+    <color name="vivid_violet">#7B3687</color>
 </resources>
