@@ -13,4 +13,6 @@
     <string name="ver_extrato">See Extract</string>
     <string name="conta_corrente">Acc %s</string>
     <string name="agencia">Ag %s</string>
+    <string name="validade_cartao">Due Date: %s</string>
+    <string name="cliente_desde">Client Since %s</string>
 </resources>
