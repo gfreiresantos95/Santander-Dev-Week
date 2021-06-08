@@ -9,7 +9,7 @@
     <string name="pagar">Pay</string>
     <string name="transferir">Transfer</string>
     <string name="recarga">Recharge</string>
-    <string name="cartao_final">Card Final: %s</string>
+    <string name="cartao">Card: %s</string>
     <string name="ver_extrato">See Extract</string>
     <string name="conta_corrente">Acc %s</string>
     <string name="agencia">Ag %s</string>

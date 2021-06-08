@@ -1,6 +1,5 @@
 package br.com.santanderdevweek.view
 
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.transition.AutoTransition
@@ -11,13 +10,10 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import br.com.santanderdevweek.R
 import br.com.santanderdevweek.viewmodel.MainViewModel
-import com.google.android.material.card.MaterialCardView
 
 class MainActivity : AppCompatActivity() {
 
@@ -69,7 +65,7 @@ class MainActivity : AppCompatActivity() {
                 getString(R.string.saldo_limite, conta.limite)
 
             findViewById<TextView>(R.id.tv_final_card).text =
-                getString(R.string.cartao_final, conta.cartao.numero)
+                getString(R.string.cartao, conta.cartao.numero)
 
             findViewById<TextView>(R.id.tv_card_due_date).text =
                 getString(R.string.validade_cartao, conta.cartao.dataValidade)
@@ -80,6 +76,30 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setListeners() {
+        findViewById<ConstraintLayout>(R.id.cl_balance_fixed_container).setOnClickListener {
+            if (findViewById<ConstraintLayout>(R.id.cl_balance_expandable_container).visibility == View.VISIBLE) {
+                TransitionManager.beginDelayedTransition(
+                    findViewById<ConstraintLayout>(R.id.cl_balance_expandable_container),
+                    AutoTransition()
+                )
+
+                findViewById<ConstraintLayout>(R.id.cl_balance_expandable_container).visibility =
+                    View.GONE
+
+                findViewById<ImageView>(R.id.iv_expand_balance_icon).setImageResource(R.drawable.ic_expand_more)
+            } else {
+                TransitionManager.beginDelayedTransition(
+                    findViewById<ConstraintLayout>(R.id.cl_balance_expandable_container),
+                    AutoTransition()
+                )
+
+                findViewById<ConstraintLayout>(R.id.cl_balance_expandable_container).visibility =
+                    View.VISIBLE
+
+                findViewById<ImageView>(R.id.iv_expand_balance_icon).setImageResource(R.drawable.ic_expand_less)
+            }
+        }
+
         findViewById<ConstraintLayout>(R.id.cl_final_card_fixed_container).setOnClickListener {
             if (findViewById<ConstraintLayout>(R.id.cl_final_card_expandable_container).visibility == View.VISIBLE) {
                 TransitionManager.beginDelayedTransition(

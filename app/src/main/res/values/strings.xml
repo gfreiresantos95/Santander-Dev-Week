@@ -11,7 +11,7 @@
     <string name="pagar">Pagar</string>
     <string name="transferir">Transferir</string>
     <string name="recarga">Recarga</string>
-    <string name="cartao_final">Cartão Final: %S</string>
+    <string name="cartao">Cartão: %S</string>
     <string name="validade_cartao">Validade: %s</string>
     <string name="cliente_desde">Cliente desde %s</string>
 </resources>
