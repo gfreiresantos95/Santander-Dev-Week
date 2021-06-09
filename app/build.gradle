@@ -34,6 +34,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    viewBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -55,4 +58,5 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-perf'
     implementation 'com.android.support:multidex:1.0.3'
+    implementation 'gr.pantrif:easy-android-splash-screen:0.0.1'
 }

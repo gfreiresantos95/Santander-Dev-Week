@@ -13,15 +13,18 @@ import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.ViewModelProvider
 import br.com.santanderdevweek.R
+import br.com.santanderdevweek.databinding.ActivityMainBinding
 import br.com.santanderdevweek.viewmodel.MainViewModel
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var mBinding: ActivityMainBinding
     private lateinit var mMainViewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        mBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(mBinding.root)
         setSupportActionBar(findViewById(R.id.main_toolbar))
 
         mMainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
@@ -49,79 +52,48 @@ class MainActivity : AppCompatActivity() {
 
     private fun getData() {
         mMainViewModel.buscarConta().observe(this, { conta ->
-            findViewById<TextView>(R.id.tv_user_header).text =
-                getString(R.string.ola_usuario, conta.cliente.nomeCliente)
-
-            findViewById<TextView>(R.id.tv_agency_header).text =
-                getString(R.string.agencia, conta.agencia)
-
-            findViewById<TextView>(R.id.tv_account_header).text =
-                getString(R.string.conta_corrente, conta.numeroConta)
-
-            findViewById<TextView>(R.id.tv_balance).text =
-                getString(R.string.saldo, conta.saldo)
-
-            findViewById<TextView>(R.id.tv_balance_limit).text =
-                getString(R.string.saldo_limite, conta.limite)
-
-            findViewById<TextView>(R.id.tv_final_card).text =
-                getString(R.string.cartao, conta.cartao.numero)
-
-            findViewById<TextView>(R.id.tv_card_due_date).text =
+            mBinding.tvUserHeader.text = getString(R.string.ola_usuario, conta.cliente.nomeCliente)
+            mBinding.tvAgencyHeader.text = getString(R.string.agencia, conta.agencia)
+            mBinding.tvAccountHeader.text = getString(R.string.conta_corrente, conta.numeroConta)
+            mBinding.tvBalance.text = getString(R.string.saldo, conta.saldo)
+            mBinding.tvBalanceLimit.text = getString(R.string.saldo_limite, conta.limite)
+            mBinding.tvFinalCard.text = getString(R.string.cartao, conta.cartao.numero)
+            mBinding.tvCardDueDate.text =
                 getString(R.string.validade_cartao, conta.cartao.dataValidade)
-
-            findViewById<TextView>(R.id.tv_card_shipping_date).text =
+            mBinding.tvCardShippingDate.text =
                 getString(R.string.cliente_desde, conta.cartao.dataExpedicao)
         })
     }
 
     private fun setListeners() {
-        findViewById<ConstraintLayout>(R.id.cl_balance_fixed_container).setOnClickListener {
-            if (findViewById<ConstraintLayout>(R.id.cl_balance_expandable_container).visibility == View.VISIBLE) {
-                TransitionManager.beginDelayedTransition(
-                    findViewById<ConstraintLayout>(R.id.cl_balance_expandable_container),
-                    AutoTransition()
-                )
-
-                findViewById<ConstraintLayout>(R.id.cl_balance_expandable_container).visibility =
-                    View.GONE
-
-                findViewById<ImageView>(R.id.iv_expand_balance_icon).setImageResource(R.drawable.ic_expand_more)
+        mBinding.clBalanceFixedContainer.setOnClickListener {
+            if (mBinding.clBalanceExpandableContainer.visibility == View.VISIBLE) {
+                beginTransition(mBinding.clBalanceExpandableContainer)
+                mBinding.clBalanceExpandableContainer.visibility = View.GONE
+                mBinding.ivExpandBalanceIcon.setImageResource(R.drawable.ic_expand_more)
             } else {
-                TransitionManager.beginDelayedTransition(
-                    findViewById<ConstraintLayout>(R.id.cl_balance_expandable_container),
-                    AutoTransition()
-                )
-
-                findViewById<ConstraintLayout>(R.id.cl_balance_expandable_container).visibility =
-                    View.VISIBLE
-
-                findViewById<ImageView>(R.id.iv_expand_balance_icon).setImageResource(R.drawable.ic_expand_less)
+                beginTransition(mBinding.clBalanceExpandableContainer)
+                mBinding.clBalanceExpandableContainer.visibility = View.VISIBLE
+                mBinding.ivExpandBalanceIcon.setImageResource(R.drawable.ic_expand_less)
             }
         }
 
-        findViewById<ConstraintLayout>(R.id.cl_final_card_fixed_container).setOnClickListener {
-            if (findViewById<ConstraintLayout>(R.id.cl_final_card_expandable_container).visibility == View.VISIBLE) {
-                TransitionManager.beginDelayedTransition(
-                    findViewById<ConstraintLayout>(R.id.cl_final_card_expandable_container),
-                    AutoTransition()
-                )
-
-                findViewById<ConstraintLayout>(R.id.cl_final_card_expandable_container).visibility =
-                    View.GONE
-
-                findViewById<ImageView>(R.id.iv_expand_final_card_icon).setImageResource(R.drawable.ic_expand_more)
+        mBinding.clFinalCardFixedContainer.setOnClickListener {
+            if (mBinding.clFinalCardExpandableContainer.visibility == View.VISIBLE) {
+                beginTransition(mBinding.clFinalCardExpandableContainer)
+                mBinding.clFinalCardExpandableContainer.visibility = View.GONE
+                mBinding.ivExpandFinalCardIcon.setImageResource(R.drawable.ic_expand_more)
             } else {
-                TransitionManager.beginDelayedTransition(
-                    findViewById<ConstraintLayout>(R.id.cl_final_card_expandable_container),
-                    AutoTransition()
-                )
-
-                findViewById<ConstraintLayout>(R.id.cl_final_card_expandable_container).visibility =
-                    View.VISIBLE
-
-                findViewById<ImageView>(R.id.iv_expand_final_card_icon).setImageResource(R.drawable.ic_expand_less)
+                beginTransition(mBinding.clFinalCardExpandableContainer)
+                mBinding.clFinalCardExpandableContainer.visibility = View.VISIBLE
+                mBinding.ivExpandFinalCardIcon.setImageResource(R.drawable.ic_expand_less)
             }
         }
+    }
+
+    private fun beginTransition(view: ConstraintLayout) {
+        TransitionManager.beginDelayedTransition(
+            view, AutoTransition()
+        )
     }
 }
